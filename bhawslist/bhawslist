@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo AWS EC2
+aws ec2 describe-instances \
+    --query 'Reservations[*].Instances[*].{Instance:KeyName,State:Monitoring.State,Type:InstanceType,AZ:Placement.AvailabilityZone}' \
+    --output table
+
+echo
+echo AWS lambda
+python3 aws_lambdahist.py
+# aws lambda list-functions --query 'Functions[*].{FunctionName:FunctionName,LastModified:LastModified}' --output table
+
+echo
+echo AWS S3
+python3 aws_s3ls.py
+
+
