@@ -1,0 +1,1 @@
+/home/[local_username]/path/to/your/aws_credential_pem_file.pem 

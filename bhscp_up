@@ -1,0 +1,13 @@
+#!/bin/bash
+bin_dir=$(dirname "$(readlink -f "$0")")/
+ec2_uri=$(<$bin_dir'ec2_uri.txt')
+ec2_username=$(<$bin_dir'ec2_username.txt')
+pem_path=$(<$bin_dir'pem_path.txt')
+
+scp -r -i $pem_path $1 $ec2_username'@'$ec2_uri':'~/.
+
+# Uploads the specified local file or directory to the home directory of the EC2 instance.
+# If it's a directory, it recursively includes all contained files.
+# usage
+# bhscp_up 'testfile.txt'
+# bhscp_up 'testdir'

@@ -1,0 +1,18 @@
+#!/bin/bash
+bin_dir=$(dirname "$(readlink -f "$0")")/
+ec2_uri=$(<$bin_dir'ec2_uri.txt')
+pem_path=$(<$bin_dir'pem_path.txt')
+
+
+
+ec2_uri=$(<$bin_dir'ec2_uri.txt')
+pem_path=$(<$bin_dir'pem_path.txt')
+ec2_username=$(<$bin_dir'ec2_username.txt')
+
+
+
+ssh -i $pem_path ubuntu@$ec2_uri
+
+# opens an ssh terminal for the target EC2 computer
+# usage:
+# bhssh

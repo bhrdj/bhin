@@ -1,0 +1,14 @@
+#!/bin/bash
+bin_dir=$(dirname "$(readlink -f "$0")")/
+ec2_uri=$(<$bin_dir'ec2_uri.txt')
+ec2_username=$(<$bin_dir'ec2_username.txt')
+pem_path=$(<$bin_dir'pem_path.txt')
+
+scp -r -i $pem_path $ec2_username'@'$ec2_uri':'$1 .
+
+# BEHAVIOR
+#     Downloads the specified EC2 file or directory to the current (local) directory.
+#     If a directory is specified, it recursively includes all contained files.
+# USAGE
+#     $ bhscp_down '~/testfile.txt'
+#     $ bhscp_down '~/testdir'
